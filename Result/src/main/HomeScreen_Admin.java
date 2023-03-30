@@ -18,6 +18,13 @@ import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.sql.SQLException;
+import java.sql.Statement;
+
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import javax.swing.ImageIcon;
@@ -28,13 +35,14 @@ import javax.swing.border.BevelBorder;
 
 public class HomeScreen_Admin {
 
-	private JFrame frame;
+	public JFrame frame;
 	private JTextField textField;
 	private JTextField textField_1;
 	private JTextField textField_2;
 	private JTextField textField_3;
 	private JTextField textField_4;
 	private JTextField textField_5;
+	JLabel std_count;
 
 	/**
 	 * Launch the application.
@@ -61,7 +69,33 @@ public class HomeScreen_Admin {
 
 	/**
 	 * Initialize the contents of the frame.
+	 * @throws SQLException 
 	 */
+	
+	
+	
+	public void Homedetails() throws SQLException {
+		try {
+			 String url = "jdbc:mysql://db4free.net:3306/result_ms";
+			   String username = "rootuseronline";
+			   String password = "rootuser123";
+			String query = " SELECT count(*) from rms";
+			Connection con = DriverManager.getConnection(url,username,password);
+	         Statement st = con.createStatement();
+	        ResultSet rs = st.executeQuery(query);
+	        rs.next();
+	        std_count.setText(String.valueOf(rs.getInt(1)));
+	        
+	       
+	        
+	  
+			
+			}catch(SQLException ee) 
+			{
+				ee.printStackTrace();
+				}
+			
+	}
 	private void initialize() {
 		frame = new JFrame();
 		frame.getContentPane().setEnabled(false);
@@ -99,10 +133,28 @@ public class HomeScreen_Admin {
 		SidePanel_Admin.setBackground(new Color(250, 235, 215));
 		
 		JButton btnNewButton_3_1 = new JButton("Log Out");
+		btnNewButton_3_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				LoginScreen_Result login = new LoginScreen_Result();
+				login.frame.setVisible(true);
+			}
+		});
 		btnNewButton_3_1.setFont(new Font("Segoe UI Variable", Font.BOLD, 15));
 		btnNewButton_3_1.setBackground(new Color(255, 128, 0));
 		
 		JButton btn_AllStudents = new JButton("Add Staff");
+		btn_AllStudents.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				
+				
+				
+				
+				
+				
+			}
+		});
 		btn_AllStudents.setFont(new Font("Segoe UI Variable", Font.BOLD, 15));
 		btn_AllStudents.setBorder(new LineBorder(new Color(255, 128, 0)));
 		btn_AllStudents.setBackground(Color.WHITE);
@@ -197,11 +249,11 @@ public class HomeScreen_Admin {
 		lblNewLabel_1_1.setBounds(0, 38, 157, 30);
 		panel_1_1.add(lblNewLabel_1_1);
 		
-		JLabel lblNewLabel_1_1_1 = new JLabel("65");
-		lblNewLabel_1_1_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_1_1_1.setFont(new Font("Arial Black", Font.BOLD, 40));
-		lblNewLabel_1_1_1.setBounds(0, 66, 157, 63);
-		panel_1_1.add(lblNewLabel_1_1_1);
+		std_count = new JLabel("65");
+		std_count.setHorizontalAlignment(SwingConstants.CENTER);
+		std_count.setFont(new Font("Arial Black", Font.BOLD, 40));
+		std_count.setBounds(0, 66, 157, 63);
+		panel_1_1.add(std_count);
 		
 		JPanel panel_1_1_1 = new JPanel();
 		panel_1_1_1.setLayout(null);

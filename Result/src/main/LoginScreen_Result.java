@@ -39,13 +39,12 @@ public class LoginScreen_Result {
 	public JFrame frame;
 	private JTextField Staff_uname;
 	private JPasswordField Staff_password;
-	private JTextField textField_1;
-	private JPasswordField passwordField_1;
+	private JTextField Amin_ID;
+	private JPasswordField Admin_Password;
 	
 	//demo staff details for testing
 	String name = "Vengadesh";
 	String password = "12345";
-
 	/**
 	 * Launch the application.
 	 */
@@ -255,31 +254,42 @@ public class LoginScreen_Result {
 		lblNewLabel_3_2.setBounds(561, 300, 145, 27);
 		frame.getContentPane().add(lblNewLabel_3_2);
 		
-		textField_1 = new JTextField();
-		textField_1.setHorizontalAlignment(SwingConstants.CENTER);
-		textField_1.setFont(new Font("Segoe UI Variable", Font.BOLD, 15));
-		textField_1.setColumns(10);
-		textField_1.setBorder(null);
-		textField_1.setBackground(new Color(250, 235, 215));
-		textField_1.setBounds(561, 332, 362, 35);
-		frame.getContentPane().add(textField_1);
+		Amin_ID = new JTextField();
+		Amin_ID.setHorizontalAlignment(SwingConstants.CENTER);
+		Amin_ID.setFont(new Font("Segoe UI Variable", Font.BOLD, 15));
+		Amin_ID.setColumns(10);
+		Amin_ID.setBorder(null);
+		Amin_ID.setBackground(new Color(250, 235, 215));
+		Amin_ID.setBounds(561, 332, 362, 35);
+		frame.getContentPane().add(Amin_ID);
 		
 		JLabel lblNewLabel_3_1_1 = new JLabel("PASSWORD");
 		lblNewLabel_3_1_1.setFont(new Font("Segoe UI Variable", Font.BOLD, 16));
 		lblNewLabel_3_1_1.setBounds(561, 377, 145, 27);
 		frame.getContentPane().add(lblNewLabel_3_1_1);
 		
-		passwordField_1 = new JPasswordField();
-		passwordField_1.setHorizontalAlignment(SwingConstants.CENTER);
-		passwordField_1.setFont(new Font("Segoe UI Variable", Font.BOLD, 15));
-		passwordField_1.setBorder(null);
-		passwordField_1.setBackground(new Color(250, 235, 215));
-		passwordField_1.setBounds(561, 406, 362, 35);
-		frame.getContentPane().add(passwordField_1);
+		Admin_Password = new JPasswordField();
+		Admin_Password.setHorizontalAlignment(SwingConstants.CENTER);
+		Admin_Password.setFont(new Font("Segoe UI Variable", Font.BOLD, 15));
+		Admin_Password.setBorder(null);
+		Admin_Password.setBackground(new Color(250, 235, 215));
+		Admin_Password.setBounds(561, 406, 362, 35);
+		frame.getContentPane().add(Admin_Password);
 		
 		JButton btnNewButton_1_1 = new JButton("LOG IN");
 		btnNewButton_1_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+			 if(Amin_ID.getText().equals("Adminuser") && Admin_Password.getText().equals("12345")) {
+				 HomeScreen_Admin  admin = new HomeScreen_Admin();
+				 admin.frame.setVisible(true);
+				 try {
+					admin.Homedetails();
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			 }
 				
 				
 			}
